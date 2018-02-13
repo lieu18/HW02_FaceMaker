@@ -2,6 +2,8 @@ package com.example.anthonylieu.hw02_facemaker;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 import android.graphics.Color;
@@ -16,7 +18,7 @@ import java.util.Random;
 // https://learning.up.edu/moodle/pluginfile.php/635566/mod_resource/content/0/MyArtwork.java
 public class Face extends SurfaceView {
 
-    private Paint skinColor, eyeColor, hairColor;
+    private Paint skinColor, eyeColor, hairColor, White;
 
     private SurfaceView sv;
 
@@ -72,16 +74,33 @@ public class Face extends SurfaceView {
         hairColor = new Paint();
         hairColor.setColor(Color.rgb(hairRed, hairGreen, hairBlue));
 
+        White = new Paint();
+        White.setColor(Color.WHITE);
+
         hairStyle = gen.nextInt(3) + 1;
     }
 
 
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP) // Required to use drawArc
     public void onDraw(Canvas canvas) {
 
         //canvas.drawRect(400f, 100f, 1400f, 900f, hairColor); // Flat Top Hair
         //canvas.drawCircle(900f, 700f, 600f, hairColor); // Afro Hair
 
-        canvas.drawCircle(900f, 900f, 500f, skinColor);
+
+        // Gives me the bald face
+        canvas.drawCircle(900f, 900f, 500f, skinColor); // face
+        canvas.drawCircle(700f, 750f, 100f, White); // left eye whites
+        canvas.drawCircle(1100f, 750f, 100f, White); // right eye whites
+        canvas.drawCircle(700f, 750f, 70f, eyeColor); // left eye
+        canvas.drawCircle(1100f, 750f, 70f, eyeColor); // right eye
+        canvas.drawArc(700f,1050f, 1100f, 1150, 0f, 180f, true, White); // mouth
+
+
+
+        //canvas.drawArc(440f, 400f, 1360f, 1000f, 180f, 180f, true, hairColor); // Bowl Cut
+
     }
 }
 

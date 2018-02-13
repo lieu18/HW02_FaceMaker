@@ -3,8 +3,14 @@
     <string name="hair">Hair</string>
     <string name="eyes">Eyes</string>
     <string name="skin">Skin</string>
-    <string name="random_face">Random_Face</string>
-    <string name="red">Red</string>
-    <string name="green">Green</string>
-    <string name="blue">Blue</string>
+    <string name="random_face">Random Face</string>
+    <string name="red">Red: 0</string>
+    <string name="green">Green: 0</string>
+    <string name="blue">Blue: 0</string>
+    <string-array name="hairStyles">
+        <item>Choose a Hair Style</item>
+        <item>Afro</item>
+        <item>Flat Top</item>
+        <item>Bowl Cut</item>
+    </string-array>
 </resources>

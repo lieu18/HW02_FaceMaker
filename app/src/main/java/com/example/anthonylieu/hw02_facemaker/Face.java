@@ -15,7 +15,7 @@ import java.util.Random;
  * Created by AnthonyLieu on 2/12/18.
  */
 
-// https://learning.up.edu/moodle/pluginfile.php/635566/mod_resource/content/0/MyArtwork.java
+
 public class Face extends SurfaceView {
 
     public static Paint skinColor, eyeColor, hairColor, White;
@@ -82,7 +82,17 @@ public class Face extends SurfaceView {
         hairGreen = gen.nextInt(255);
         hairBlue = gen.nextInt(255);
 
+        hairStyle = gen.nextInt(2);
+
     }
+
+    /*
+    External Citation
+        Date: February 12, 2018
+        Problem: Did not know the paint calls for canvas
+        Resource: https://developer.android.com/reference/android/graphics/Canvas.html
+        Solution: I read through the documentation and tested out a variety of function calls
+     */
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP) // Required for drawArc
     public void drawHead(Canvas canvas) {

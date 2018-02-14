@@ -1,11 +1,10 @@
 package com.example.anthonylieu.hw02_facemaker;
 
 
-import android.graphics.Color;
+
 import android.support.annotation.IdRes;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -29,6 +28,8 @@ public class MyListener
 
     private Face face;
 
+    // Methods allow more TextViews, SeekBars, RadioButtons, and Spinners to be added into thier
+    // respective ArrayLists
     public void addTV (TextView newTextView) {
         allTVs.add(newTextView);
     }
@@ -42,6 +43,8 @@ public class MyListener
         allSPs.add(newSpinner);
     }
 
+    // Button method
+    // This button creates a new random face every time it is clicked
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.buttonRandomFace) {
@@ -49,13 +52,23 @@ public class MyListener
         }
     }
 
-    // https://stackoverflow.com/questions/42502055/how-to-check-which-radio-button-of-a-radio-group-is-selected-android/42502234
+    /*
+    External Citation
+        Date: February 13, 2018
+        Problem: Did not know or understand how this listener works
+        Resource: https://stackoverflow.com/questions/42502055
+                  /how-to-check-which-radio-button-of-a-radio-group-is-selected-android/42502234
+        Solution: I used the example here to implement this listener
+     */
 
+    // RadioGroup Method
+    // This method should allow the user to toggle through the 3 different features and their settings
+    // The seekbars for the RGB components should change depending on which button is clicked
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         int checkedRadioButton = group.getCheckedRadioButtonId();
-        if (checkedRadioButton == R.id.radioButtonHair) {
-            for (SeekBar sb : allSBs) {
+        if (checkedRadioButton == R.id.radioButtonHair) { // Checks which radio button is checked
+            for (SeekBar sb : allSBs) { // Determine which seekbar should display which value
                 if (sb.getId() == R.id.seekBarRed) {
                     sb.setProgress(face.hairRed);
                 }
@@ -95,15 +108,20 @@ public class MyListener
         }
     }
 
+    // SeekBar Methods
+    // This controls the RGB values of the different features
+    // This should allow the user to freely change the color of the face to thier liking
+
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         int curSeekBarId = seekBar.getId();
         for (TextView tv : allTVs)
             if ((curSeekBarId == R.id.seekBarRed) && (tv.getId() == R.id.textViewRed)) {
-                seekBar.setProgress(progress);
-                tv.setText("Red: " + progress);
-                if (allRBs.get(0).isChecked()) {
-                    face.hairRed = progress;
+                seekBar.setProgress(progress); // Moves seekbar to correct location
+                tv.setText("Red: " + progress); // Updates the TextView to the corresponding seekbar
+
+                if (allRBs.get(0).isChecked()) { // Checks for which RadioButton is click
+                    face.hairRed = progress;     // adjust the RGB components as the seekbar moves
                 } else if (allRBs.get(1).isChecked()) {
                     face.eyeRed = progress;
                 } else if (allRBs.get(2).isChecked()) {
@@ -113,6 +131,7 @@ public class MyListener
             else if ((curSeekBarId == R.id.seekBarGreen) && (tv.getId() == R.id.textViewGreen)) {
                 seekBar.setProgress(progress);
                 tv.setText("Green: " + progress);
+
                 if (allRBs.get(0).isChecked()) {
                     face.hairGreen = progress;
                 } else if (allRBs.get(1).isChecked()) {
@@ -124,6 +143,7 @@ public class MyListener
             else if ((curSeekBarId == R.id.seekBarBlue) && (tv.getId() == R.id.textViewBlue)) {
                 seekBar.setProgress(progress);
                 tv.setText("Blue: " + progress);
+
                 if (allRBs.get(0).isChecked()) {
                     face.hairBlue = progress;
                 } else if (allRBs.get(1).isChecked()) {
@@ -144,13 +164,15 @@ public class MyListener
         // Do Nothing
     }
 
+    // Spinner Methods
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // This sets the hairstyle based on the position of the spinner
         face.hairStyle = parent.getSelectedItemPosition();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        // do nothing
+        // Do nothing
     }
 }

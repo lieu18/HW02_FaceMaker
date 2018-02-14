@@ -18,9 +18,9 @@ import java.util.Random;
 
 public class Face extends SurfaceView {
 
-    public static Paint skinColor, eyeColor, hairColor, White;
+    public static Paint skinColor, eyeColor, hairColor, White, Black;
 
-    private static SurfaceView sv;
+    private SurfaceView sv;
 
     public static int skinRed, skinGreen, skinBlue;
     public static int eyeRed, eyeGreen, eyeBlue;
@@ -28,7 +28,7 @@ public class Face extends SurfaceView {
 
     public static int hairStyle;
 
-    private static Random gen = new Random();
+    private Random gen = new Random();
 
     public Face(Context context) {
         super(context);
@@ -62,13 +62,16 @@ public class Face extends SurfaceView {
         White = new Paint();
         White.setColor(Color.WHITE);
 
+        Black = new Paint();
+        Black.setColor(Color.BLACK);
+
         sv = (SurfaceView) findViewById(R.id.surfaceView);
     }
 
     /*
      * randomize method to randomize the color of the skin, eyes, and hair
      */
-    public static void randomize() {
+    public void randomize() {
 
         skinRed = gen.nextInt(255);
         skinGreen = gen.nextInt(255);
@@ -82,7 +85,7 @@ public class Face extends SurfaceView {
         hairGreen = gen.nextInt(255);
         hairBlue = gen.nextInt(255);
 
-        hairStyle = gen.nextInt(2);
+        hairStyle = gen.nextInt(3) + 1;
 
     }
 
@@ -102,6 +105,8 @@ public class Face extends SurfaceView {
         canvas.drawCircle(1100f, 750f, 100f, White); // right eye whites
         canvas.drawCircle(700f, 750f, 70f, eyeColor); // left eye
         canvas.drawCircle(1100f, 750f, 70f, eyeColor); // right eye
+        canvas.drawCircle(700f, 750f, 50f, Black); // left pupil
+        canvas.drawCircle(1100f, 750f, 50f, Black); // right pupil
         canvas.drawArc(700f, 1050f, 1100f, 1150, 0f, 180f, true, White); // mouth
     }
 
@@ -109,17 +114,20 @@ public class Face extends SurfaceView {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP) // Required for drawArc
     public void onDraw(Canvas canvas) {
 
-        if (hairStyle == 0) {
+        if (hairStyle == 1) {
             canvas.drawRect(400f, 100f, 1400f, 900f, hairColor); // Flat Top Hair
             drawHead(canvas);
         }
-        else if (hairStyle == 1) {
+        else if (hairStyle == 2) {
             canvas.drawCircle(900f, 700f, 600f, hairColor); // Afro Hair
             drawHead(canvas);
         }
-        else {
+        else if (hairStyle == 3) {
             drawHead(canvas);
             canvas.drawArc(440f, 400f, 1360f, 1000f, 180f, 180f, true, hairColor); // Bowl Cut
+        }
+        else {
+            drawHead(canvas);
         }
     }
 }

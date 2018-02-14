@@ -18,7 +18,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private String[] hairStyles =
-            {"Flat Top", "Afro", "Bowl Cut"};
+            {"Choose a Hair Style", "Flat Top", "Afro", "Bowl Cut"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

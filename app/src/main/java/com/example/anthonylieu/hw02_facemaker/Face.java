@@ -22,9 +22,9 @@ public class Face extends SurfaceView {
 
     private SurfaceView sv;
 
-    private int skinRed, skinGreen, skinBlue;
-    private int eyeRed, eyeGreen, eyeBlue;
-    private int hairRed, hairGreen, hairBlue;
+    public static int skinRed, skinGreen, skinBlue;
+    public static int eyeRed, eyeGreen, eyeBlue;
+    public static int hairRed, hairGreen, hairBlue;
 
     private int hairStyle;
 
@@ -47,7 +47,21 @@ public class Face extends SurfaceView {
 
     public void faceInit() {
         setWillNotDraw(false);
+
         randomize();
+
+        skinColor = new Paint();
+        skinColor.setColor(Color.rgb(skinRed, skinGreen, skinBlue));
+
+        eyeColor = new Paint();
+        eyeColor.setColor(Color.rgb(eyeRed, eyeGreen, eyeBlue));
+
+        hairColor = new Paint();
+        hairColor.setColor(Color.rgb(hairRed, hairGreen, hairBlue));
+
+        White = new Paint();
+        White.setColor(Color.WHITE);
+
         sv = (SurfaceView) findViewById(R.id.surfaceView);
     }
 
@@ -59,25 +73,15 @@ public class Face extends SurfaceView {
         skinRed = gen.nextInt(255);
         skinGreen = gen.nextInt(255);
         skinBlue = gen.nextInt(255);
-        skinColor = new Paint();
-        skinColor.setColor(Color.rgb(skinRed, skinGreen, skinBlue));
 
         eyeRed = gen.nextInt(255);
         eyeGreen = gen.nextInt(255);
         eyeBlue = gen.nextInt(255);
-        eyeColor = new Paint();
-        eyeColor.setColor(Color.rgb(eyeRed, eyeGreen, eyeBlue));
 
         hairRed = gen.nextInt(255);
         hairGreen = gen.nextInt(255);
         hairBlue = gen.nextInt(255);
-        hairColor = new Paint();
-        hairColor.setColor(Color.rgb(hairRed, hairGreen, hairBlue));
 
-        White = new Paint();
-        White.setColor(Color.WHITE);
-
-        hairStyle = gen.nextInt(3) + 1;
     }
 
 
@@ -86,7 +90,7 @@ public class Face extends SurfaceView {
     public void onDraw(Canvas canvas) {
 
         //canvas.drawRect(400f, 100f, 1400f, 900f, hairColor); // Flat Top Hair
-        //canvas.drawCircle(900f, 700f, 600f, hairColor); // Afro Hair
+        canvas.drawCircle(900f, 700f, 600f, hairColor); // Afro Hair
 
 
         // Gives me the bald face

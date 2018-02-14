@@ -12,6 +12,7 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import static com.example.anthonylieu.hw02_facemaker.R.id.radioButtonHair;
 import static com.example.anthonylieu.hw02_facemaker.R.id.seekBarRed;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,66 +33,54 @@ public class MainActivity extends AppCompatActivity {
                 (Spinner) findViewById(R.id.spinnerHairStyle);
         spinnerHairStyle.setAdapter(spinAdapter);
 
+        TextView textViewRed =
+                (TextView) findViewById(R.id.textViewRed);
+        TextView textViewGreen =
+                (TextView) findViewById(R.id.textViewGreen);
+        TextView textViewBlue =
+                (TextView) findViewById(R.id.textViewBlue);
+
 
         SeekBar seekBarRed =
                 (SeekBar) findViewById(R.id.seekBarRed);
-        seekBarRed.setOnSeekBarChangeListener(new seekBarListener());
+        seekBarRed.setMax(255);
         SeekBar seekBarGreen =
                 (SeekBar) findViewById(R.id.seekBarGreen);
-        seekBarGreen.setOnSeekBarChangeListener(new seekBarListener());
+        seekBarGreen.setMax(255);
         SeekBar seekBarBlue =
                 (SeekBar) findViewById(R.id.seekBarBlue);
-        seekBarBlue.setOnSeekBarChangeListener(new seekBarListener());
+        seekBarBlue.setMax(255);
 
         // https://stackoverflow.com/questions/18536195/android-oncheckedchanged-for-radiogroup
 
         RadioGroup radioGroup =
                 (RadioGroup) findViewById(R.id.radioGroup);
-            RadioButton radioButtonHair =
-                    (RadioButton) findViewById(R.id.radioButtonHair);
-            RadioButton radioButtonEyes =
-                    (RadioButton) findViewById(R.id.radioButtonEyes);
-            RadioButton radioButtonSkin =
-                    (RadioButton) findViewById(R.id.radioButtonSkin);
-            radioGroup.setOnCheckedChangeListener(new radioGroupListener());
+        RadioButton radioButtonHair =
+                (RadioButton) findViewById(R.id.radioButtonHair);
+        RadioButton radioButtonEyes =
+               (RadioButton) findViewById(R.id.radioButtonEyes);
+        RadioButton radioButtonSkin =
+                (RadioButton) findViewById(R.id.radioButtonSkin);
 
-    }
+        // Set up controller
+        MyListener aListener = new MyListener();
+        aListener.addTV(textViewRed);
+        aListener.addTV(textViewGreen);
+        aListener.addTV(textViewBlue);
+        aListener.addSB(seekBarRed);
+        aListener.addSB(seekBarGreen);
+        aListener.addSB(seekBarBlue);
+        aListener.addRB(radioButtonHair);
+        aListener.addRB(radioButtonEyes);
+        aListener.addRB(radioButtonSkin);
 
-    private class seekBarListener implements SeekBar.OnSeekBarChangeListener {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            if (seekBar.getId() == R.id.seekBarRed) {
-                TextView textViewRed =
-                        (TextView) findViewById(R.id.textViewRed);
-                textViewRed.setText("Red: " + progress);
-            }
-            else if (seekBar.getId() == R.id.seekBarGreen) {
-                TextView textViewGreen =
-                        (TextView) findViewById(R.id.textViewGreen);
-                textViewGreen.setText("Green: " + progress);
-            }
-            else if (seekBar.getId() == R.id.seekBarBlue) {
-                TextView textViewBlue =
-                        (TextView) findViewById(R.id.textViewBlue);
-                textViewBlue.setText("Blue: " + progress);
-            }
-        }
+        // Register Listener with SeekBar
+        seekBarRed.setOnSeekBarChangeListener(aListener);
+        seekBarGreen.setOnSeekBarChangeListener(aListener);
+        seekBarBlue.setOnSeekBarChangeListener(aListener);
 
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
+        radioGroup.setOnCheckedChangeListener(aListener);
 
-        }
 
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-
-        }
-    }
-
-    private class radioGroupListener implements RadioGroup.OnCheckedChangeListener {
-        @Override
-        public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-
-        }
     }
 }

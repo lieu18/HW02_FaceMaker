@@ -20,11 +20,14 @@ public class MainActivity extends AppCompatActivity {
     private String[] hairStyles =
             {"Choose a Hair Style", "Flat Top", "Afro", "Bowl Cut"};
 
+    public static Face face;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        face = new Face(getApplicationContext());
 
         /*
         External Citation

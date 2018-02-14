@@ -26,6 +26,8 @@ public class Face extends SurfaceView {
     public static int eyeRed, eyeGreen, eyeBlue;
     public static int hairRed, hairGreen, hairBlue;
 
+    private int redSkin, greenSkin, blueSkin, redEye, greenEye, blueEye, redHair, greenHair, blueHair;
+
     public static int hairStyle;
 
     private Random gen = new Random();
@@ -51,13 +53,13 @@ public class Face extends SurfaceView {
         randomize();
 
         skinColor = new Paint();
-        skinColor.setColor(Color.rgb(skinRed, skinGreen, skinBlue));
+        skinColor.setColor(Color.rgb(redSkin, greenSkin, blueSkin));
 
         eyeColor = new Paint();
-        eyeColor.setColor(Color.rgb(eyeRed, eyeGreen, eyeBlue));
+        eyeColor.setColor(Color.rgb(redEye, greenEye, blueEye));
 
         hairColor = new Paint();
-        hairColor.setColor(Color.rgb(hairRed, hairGreen, hairBlue));
+        hairColor.setColor(Color.rgb(redHair, greenHair, blueHair));
 
         White = new Paint();
         White.setColor(Color.WHITE);
@@ -73,19 +75,34 @@ public class Face extends SurfaceView {
      */
     public void randomize() {
 
-        skinRed = gen.nextInt(255);
-        skinGreen = gen.nextInt(255);
-        skinBlue = gen.nextInt(255);
+        compareRGB();
 
-        eyeRed = gen.nextInt(255);
-        eyeGreen = gen.nextInt(255);
-        eyeBlue = gen.nextInt(255);
+        redSkin = gen.nextInt(255);
+        greenSkin = gen.nextInt(255);
+        blueSkin = gen.nextInt(255);
 
-        hairRed = gen.nextInt(255);
-        hairGreen = gen.nextInt(255);
-        hairBlue = gen.nextInt(255);
+        redEye = gen.nextInt(255);
+        greenEye = gen.nextInt(255);
+        blueEye = gen.nextInt(255);
+
+        redHair = gen.nextInt(255);
+        greenHair = gen.nextInt(255);
+        blueHair = gen.nextInt(255);
 
         hairStyle = gen.nextInt(3) + 1;
+
+        skinRed = redSkin;
+        skinGreen = greenSkin;
+        skinBlue = blueSkin;
+
+        eyeRed = redEye;
+        eyeGreen = greenEye;
+        eyeBlue = blueEye;
+
+        hairRed = redHair;
+        hairGreen = greenHair;
+        hairBlue = blueHair;
+
 
     }
 
@@ -117,17 +134,60 @@ public class Face extends SurfaceView {
         if (hairStyle == 1) {
             canvas.drawRect(400f, 100f, 1400f, 900f, hairColor); // Flat Top Hair
             drawHead(canvas);
+
         }
         else if (hairStyle == 2) {
             canvas.drawCircle(900f, 700f, 600f, hairColor); // Afro Hair
             drawHead(canvas);
+
         }
         else if (hairStyle == 3) {
             drawHead(canvas);
             canvas.drawArc(440f, 400f, 1360f, 1000f, 180f, 180f, true, hairColor); // Bowl Cut
+
         }
         else {
             drawHead(canvas);
+
+        }
+    }
+
+    public void compareRGB () {
+        if (redHair != hairRed) {
+            redHair = hairRed;
+            hairColor.setColor(Color.rgb(redHair, greenHair, blueHair));
+        }
+        if (greenHair != hairGreen) {
+            greenHair = hairGreen;
+            hairColor.setColor(Color.rgb(redHair, greenHair, blueHair));
+        }
+        if (blueHair != hairBlue) {
+            blueHair = hairBlue;
+            hairColor.setColor(Color.rgb(redHair, greenHair, blueHair));
+        }
+        if (redEye != eyeRed) {
+            redEye = eyeRed;
+            eyeColor.setColor(Color.rgb(redEye, greenEye, blueEye));
+        }
+        if (greenEye != eyeGreen) {
+            greenEye = eyeGreen;
+            eyeColor.setColor(Color.rgb(redEye, greenEye, blueEye));
+        }
+        if (blueEye != eyeBlue) {
+            blueEye = eyeBlue;
+            eyeColor.setColor(Color.rgb(redEye, greenEye, blueEye));
+        }
+        if (redSkin != skinRed) {
+            redSkin = skinRed;
+            skinColor.setColor(Color.rgb(redSkin, greenSkin, blueSkin));
+        }
+        if (greenSkin != skinGreen) {
+            greenSkin = skinGreen;
+            skinColor.setColor(Color.rgb(redSkin, greenSkin, blueSkin));
+        }
+        if (blueSkin != skinBlue) {
+            blueSkin = skinBlue;
+            skinColor.setColor(Color.rgb(redSkin, greenSkin, blueSkin));
         }
     }
 }

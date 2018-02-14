@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static com.example.anthonylieu.hw02_facemaker.MainActivity.face;
+
+
 /**
  * Created by AnthonyLieu on 2/13/18.
  */
@@ -26,7 +29,8 @@ public class MyListener
     private ArrayList<RadioButton> allRBs = new ArrayList<RadioButton>();
     private ArrayList<Spinner> allSPs = new ArrayList<Spinner>();
 
-    private Face face;
+    //private Face face; // Doesn't know how to do anything so can't do this
+
 
     // Methods allow more TextViews, SeekBars, RadioButtons, and Spinners to be added into thier
     // respective ArrayLists
@@ -50,6 +54,7 @@ public class MyListener
         if (v.getId() == R.id.buttonRandomFace) {
             face.randomize();
         }
+        face.invalidate();
     }
 
     /*
@@ -106,6 +111,7 @@ public class MyListener
                 }
             }
         }
+        face.invalidate();
     }
 
     // SeekBar Methods
@@ -115,16 +121,18 @@ public class MyListener
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         int curSeekBarId = seekBar.getId();
-        for (TextView tv : allTVs)
+        for (TextView tv : allTVs) {
             if ((curSeekBarId == R.id.seekBarRed) && (tv.getId() == R.id.textViewRed)) {
                 seekBar.setProgress(progress); // Moves seekbar to correct location
                 tv.setText("Red: " + progress); // Updates the TextView to the corresponding seekbar
 
                 if (allRBs.get(0).isChecked()) { // Checks for which RadioButton is click
                     face.hairRed = progress;     // adjust the RGB components as the seekbar moves
-                } else if (allRBs.get(1).isChecked()) {
+                }
+                else if (allRBs.get(1).isChecked()) {
                     face.eyeRed = progress;
-                } else if (allRBs.get(2).isChecked()) {
+                }
+                else if (allRBs.get(2).isChecked()) {
                     face.skinRed = progress;
                 }
             }
@@ -134,9 +142,11 @@ public class MyListener
 
                 if (allRBs.get(0).isChecked()) {
                     face.hairGreen = progress;
-                } else if (allRBs.get(1).isChecked()) {
+                }
+                else if (allRBs.get(1).isChecked()) {
                     face.eyeGreen = progress;
-                } else if (allRBs.get(2).isChecked()) {
+                }
+                else if (allRBs.get(2).isChecked()) {
                     face.skinGreen = progress;
                 }
             }
@@ -146,12 +156,16 @@ public class MyListener
 
                 if (allRBs.get(0).isChecked()) {
                     face.hairBlue = progress;
-                } else if (allRBs.get(1).isChecked()) {
+                }
+                else if (allRBs.get(1).isChecked()) {
                     face.eyeBlue = progress;
-                } else if (allRBs.get(2).isChecked()) {
+                }
+                else if (allRBs.get(2).isChecked()) {
                     face.skinBlue = progress;
                 }
             }
+        }
+        face.invalidate();
     }
 
     @Override
@@ -168,7 +182,8 @@ public class MyListener
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // This sets the hairstyle based on the position of the spinner
-        face.hairStyle = parent.getSelectedItemPosition();
+        face.hairStyle = position;
+        face.invalidate();
     }
 
     @Override

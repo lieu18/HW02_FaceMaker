@@ -9,8 +9,8 @@
     <string name="blue">Blue: 0</string>
     <string-array name="hairStyles">
         <item>Choose a Hair Style</item>
-        <item>Afro</item>
         <item>Flat Top</item>
+        <item>Afro</item>
         <item>Bowl Cut</item>
     </string-array>
 </resources>

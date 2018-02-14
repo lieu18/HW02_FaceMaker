@@ -1,11 +1,10 @@
 package com.example.anthonylieu.hw02_facemaker;
 
-import android.provider.MediaStore;
-import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -18,7 +17,7 @@ import static com.example.anthonylieu.hw02_facemaker.R.id.seekBarRed;
 public class MainActivity extends AppCompatActivity {
 
     private String[] hairStyles =
-            {"Afro", "Flat Top", "Bowl Cut"};
+            {"Flat Top", "Afro", "Bowl Cut"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         Spinner spinnerHairStyle =
                 (Spinner) findViewById(R.id.spinnerHairStyle);
         spinnerHairStyle.setAdapter(spinAdapter);
+
 
         TextView textViewRed =
                 (TextView) findViewById(R.id.textViewRed);
@@ -62,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         RadioButton radioButtonSkin =
                 (RadioButton) findViewById(R.id.radioButtonSkin);
 
+        Button buttonRandomFace =
+                (Button) findViewById(R.id.buttonRandomFace);
+
         // Set up controller
         MyListener aListener = new MyListener();
         aListener.addTV(textViewRed);
@@ -73,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         aListener.addRB(radioButtonHair);
         aListener.addRB(radioButtonEyes);
         aListener.addRB(radioButtonSkin);
+        aListener.addSP(spinnerHairStyle);
 
         // Register Listener with SeekBar
         seekBarRed.setOnSeekBarChangeListener(aListener);
@@ -81,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
         radioGroup.setOnCheckedChangeListener(aListener);
 
+        buttonRandomFace.setOnClickListener(aListener);
+
+        spinnerHairStyle.setOnItemSelectedListener(aListener);
 
     }
 }

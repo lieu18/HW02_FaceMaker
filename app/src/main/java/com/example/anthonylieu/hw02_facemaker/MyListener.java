@@ -15,7 +15,10 @@ import java.util.ArrayList;
 
 
 /**
- * Created by AnthonyLieu on 2/13/18.
+ * @author Anthony Lieu
+ * MyListener.java is where all functionality of the Listeners are implemented
+ * This handles the calls made when there is something changing with the image and
+ * each listener determines what changes happen to whichever widget is used.
  */
 
 public class MyListener

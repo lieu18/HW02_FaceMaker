@@ -12,7 +12,9 @@ import android.graphics.Paint;
 import java.util.Random;
 
 /**
- * Created by AnthonyLieu on 2/12/18.
+ * @author Anthony Lieu
+ * Face.Java is the file the drawing occurs in this App. onDraw is called here as well as the
+ * differnt colors of paint.
  */
 
 

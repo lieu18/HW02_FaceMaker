@@ -11,7 +11,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 /**
- * Created by AnthonyLieu on 2/12/18.
+ * @author Anthony Lieu
+ * MainActivity.Java is where the IDs are set into their widget declarations
+ * This also utilizes MyListener.java to provide functionality to the app
  */
 
 public class MainActivity extends AppCompatActivity {

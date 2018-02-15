@@ -13,8 +13,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static com.example.anthonylieu.hw02_facemaker.MainActivity.face;
-
 
 /**
  * Created by AnthonyLieu on 2/13/18.
@@ -28,8 +26,13 @@ public class MyListener
     private ArrayList<SeekBar> allSBs = new ArrayList<SeekBar>();
     private ArrayList<RadioButton> allRBs = new ArrayList<RadioButton>();
     private ArrayList<Spinner> allSPs = new ArrayList<Spinner>();
+    private Face face;
 
     //private Face face; // Doesn't know how to do anything so can't do this
+    public MyListener(Face myFace) {
+        face = myFace;
+    }
+
 
 
     // Methods allow more TextViews, SeekBars, RadioButtons, and Spinners to be added into thier
@@ -54,6 +57,42 @@ public class MyListener
         if (v.getId() == R.id.buttonRandomFace) {
             face.randomize();
         }
+        for (SeekBar sb : allSBs) {
+            if (allRBs.get(0).isChecked()) {
+                if (sb.getId() == R.id.seekBarRed) {
+                    sb.setProgress(face.hairRed);
+                }
+                else if (sb.getId() == R.id.seekBarGreen) {
+                    sb.setProgress(face.hairGreen);
+                }
+                else if (sb.getId() == R.id.seekBarBlue) {
+                    sb.setProgress(face.hairBlue);
+                }
+            }
+            else if (allRBs.get(1).isChecked()) {
+                if (sb.getId() == R.id.seekBarRed) {
+                    sb.setProgress(face.eyeRed);
+                }
+                else if (sb.getId() == R.id.seekBarGreen) {
+                    sb.setProgress(face.eyeGreen);
+                }
+                else if (sb.getId() == R.id.seekBarBlue) {
+                    sb.setProgress(face.eyeBlue);
+                }
+            }
+            else if (allRBs.get(2).isChecked()) {
+                if (sb.getId() == R.id.seekBarRed) {
+                    sb.setProgress(face.skinRed);
+                }
+                else if (sb.getId() == R.id.seekBarGreen) {
+                    sb.setProgress(face.skinGreen);
+                }
+                else if (sb.getId() == R.id.seekBarBlue) {
+                    sb.setProgress(face.skinBlue);
+                }
+            }
+        }
+
         face.invalidate();
     }
 

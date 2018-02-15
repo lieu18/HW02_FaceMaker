@@ -20,14 +20,24 @@ public class MainActivity extends AppCompatActivity {
     private String[] hairStyles =
             {"Choose a Hair Style", "Flat Top", "Afro", "Bowl Cut"};
 
-    public static Face face;
+    //public static Face face;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        face = new Face(getApplicationContext());
+        /* External Citation
+         *      Date: February 14, 2018
+         *      Problem: Could not call invalidate() command to change the surfaceView
+         *      Resource: Noah Davis -> Andrew Nuxoll
+         *      Solution: I had issues with bringing in the Face class from Face.java into MainActivity
+         *                and using invalidate.
+         *                This uses the original view that is first initialized and "re draws" the view
+         */
+
+        final Face face = (Face)findViewById(R.id.surfaceView);
 
         /*
         External Citation
@@ -88,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Set up controller
-        MyListener aListener = new MyListener();
+        MyListener aListener = new MyListener(face);
         aListener.addTV(textViewRed);
         aListener.addTV(textViewGreen);
         aListener.addTV(textViewBlue);

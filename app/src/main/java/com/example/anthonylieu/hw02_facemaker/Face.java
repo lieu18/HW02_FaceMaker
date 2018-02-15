@@ -22,9 +22,9 @@ public class Face extends SurfaceView {
 
     private SurfaceView sv;
 
-    public static int skinRed, skinGreen, skinBlue;
-    public static int eyeRed, eyeGreen, eyeBlue;
-    public static int hairRed, hairGreen, hairBlue;
+    public int skinRed, skinGreen, skinBlue;
+    public int eyeRed, eyeGreen, eyeBlue;
+    public int hairRed, hairGreen, hairBlue;
 
     private int redSkin, greenSkin, blueSkin, redEye, greenEye, blueEye, redHair, greenHair, blueHair;
 
@@ -74,8 +74,6 @@ public class Face extends SurfaceView {
      * randomize method to randomize the color of the skin, eyes, and hair
      */
     public void randomize() {
-
-        compareRGB();
 
         redSkin = gen.nextInt(255);
         greenSkin = gen.nextInt(255);
@@ -130,6 +128,8 @@ public class Face extends SurfaceView {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP) // Required for drawArc
     public void onDraw(Canvas canvas) {
+
+        compareRGB();
 
         if (hairStyle == 1) {
             canvas.drawRect(400f, 100f, 1400f, 900f, hairColor); // Flat Top Hair

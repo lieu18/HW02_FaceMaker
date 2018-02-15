@@ -54,9 +54,7 @@ public class MyListener
     // This button creates a new random face every time it is clicked
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.buttonRandomFace) {
-            face.randomize();
-        }
+        face.randomize();
         for (SeekBar sb : allSBs) {
             if (allRBs.get(0).isChecked()) {
                 if (sb.getId() == R.id.seekBarRed) {

@@ -52,26 +52,12 @@ public class Face extends SurfaceView {
 
         randomize();
 
-        skinColor = new Paint();
-        skinColor.setColor(Color.rgb(redSkin, greenSkin, blueSkin));
-
-        eyeColor = new Paint();
-        eyeColor.setColor(Color.rgb(redEye, greenEye, blueEye));
-
-        hairColor = new Paint();
-        hairColor.setColor(Color.rgb(redHair, greenHair, blueHair));
-
-        White = new Paint();
-        White.setColor(Color.WHITE);
-
-        Black = new Paint();
-        Black.setColor(Color.BLACK);
-
         sv = (SurfaceView) findViewById(R.id.surfaceView);
     }
 
     /*
      * randomize method to randomize the color of the skin, eyes, and hair
+     * this also sets the Colors of the skin, eyes, hair
      */
     public void randomize() {
 
@@ -101,7 +87,20 @@ public class Face extends SurfaceView {
         hairGreen = greenHair;
         hairBlue = blueHair;
 
+        skinColor = new Paint();
+        skinColor.setColor(Color.rgb(redSkin, greenSkin, blueSkin));
 
+        eyeColor = new Paint();
+        eyeColor.setColor(Color.rgb(redEye, greenEye, blueEye));
+
+        hairColor = new Paint();
+        hairColor.setColor(Color.rgb(redHair, greenHair, blueHair));
+
+        White = new Paint();
+        White.setColor(Color.WHITE);
+
+        Black = new Paint();
+        Black.setColor(Color.BLACK);
     }
 
     /*
@@ -125,7 +124,7 @@ public class Face extends SurfaceView {
         canvas.drawArc(700f, 1050f, 1100f, 1150, 0f, 180f, true, White); // mouth
     }
 
-
+    // Method OnDraw draws a different image depending on the hairStyle that is chosen
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP) // Required for drawArc
     public void onDraw(Canvas canvas) {
 
@@ -152,6 +151,8 @@ public class Face extends SurfaceView {
         }
     }
 
+    // Compare the current RGB values on the seekBar with the previous values to determine if
+    // a new color needs to be set before onDraw gets called and uses the color.
     public void compareRGB () {
         if (redHair != hairRed) {
             redHair = hairRed;

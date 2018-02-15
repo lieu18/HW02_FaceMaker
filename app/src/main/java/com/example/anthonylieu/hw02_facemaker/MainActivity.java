@@ -2,7 +2,6 @@ package com.example.anthonylieu.hw02_facemaker;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -19,9 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
     private String[] hairStyles =
             {"Choose a Hair Style", "Flat Top", "Afro", "Bowl Cut"};
-
-    //public static Face face;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             Solution: Remembered step 3 after staring at the resource for at least 5 minutes
          */
 
-        // Register Listener with SeekBar
+        // Register Listeners for the different components
         seekBarRed.setOnSeekBarChangeListener(aListener);
         seekBarGreen.setOnSeekBarChangeListener(aListener);
         seekBarBlue.setOnSeekBarChangeListener(aListener);
